@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <title>Chip-Links</title>
+
+        <script src="bower_components/angular/angular.js"></script>
+        <script src="index.js"></script>
+
+        <link rel="stylesheet" href="dist/chip-links.min.css">
+        <script src="dist/chip-links.js"></script>
+    </head>
+    <body ng-app="ChipLinksClient" ng-cloak>
+        <chip-links>
+            <chip-link id="link1">All</chip-link>
+            <chip-link id="link2">Video</chip-link>
+            <chip-link id="link3">Live</chip-link>
+            <chip-link id="link4">Link</chip-link>
+        </chip-links>
+    </body>
+</html>
