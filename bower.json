@@ -1,0 +1,28 @@
+{
+  "name": "chip-links",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Kapil Neurgaonkar"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "chips",
+    "links"
+  ],
+  "homepage": "https://github.com/kneurgao/chip-links",
+  "moduleType": [
+    "node"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.3"
+  }
+}
