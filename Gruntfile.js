@@ -1,27 +1,33 @@
-module.exports = function (grunt) {
+module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
-        copy:{
-            build:{
-                cwd:'app/module',
-                src:['**'],
-                dest:'build',
-                expand:true
+        copy: {
+            // files: {
+            //     cwd: 'app/module',
+            //     src: '**',
+            //     dest: 'app/dist'
+            //     expand: true,
+            // },
+            build: {
+                cwd: 'app/module',
+                src: ['**'],
+                dest: 'build',
+                expand: true
             }
         },
-        clean:{
-            build:{
-                src:'build'
+        clean: {
+            build: {
+                src: 'build'
             }
         },
         concat: {
             options: {
                 // define a string to put between each file in the concatenated output
-                separator: ';'
+                separator: '\n;\n'
             },
             dist: {
                 // the files to concatenate
-                src: ['app/module/**/*.js'],
+                src: ['app/module/module.js', 'app/module/**/*.js'],
                 // the location of the resulting JS file
                 dest: 'app/dist/<%= pkg.name %>.js'
             }
@@ -38,6 +44,17 @@ module.exports = function (grunt) {
                 }
             }
         },
+        cssmin: {
+            target: {
+                files: [{
+                    expand: true,
+                    cwd: 'app/module',
+                    src: ['*.css', '!*.min.css'],
+                    dest: 'app/dist',
+                    ext: '.min.css'
+                }]
+            }
+        },
         qunit: {
             files: ['app/test/**/*.html']
         },
@@ -51,7 +68,7 @@ module.exports = function (grunt) {
                     jQuery: true,
                     console: true,
                     module: true
-                }
+                },
             }
         },
         watch: {
@@ -60,13 +77,16 @@ module.exports = function (grunt) {
         }
     });
 
-    grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-clean');
-    grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-qunit');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-contrib-concat');
+
+
 
     grunt.registerTask(
         'build',
@@ -81,5 +101,5 @@ module.exports = function (grunt) {
     grunt.registerTask('test', ['jshint', 'qunit']);
 
     //Temporary
-    grunt.registerTask('dist', ['jshint', 'concat', 'uglify']);
+    grunt.registerTask('dist', ['jshint', 'concat', 'uglify', 'cssmin']);
 };
