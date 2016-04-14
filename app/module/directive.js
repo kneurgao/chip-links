@@ -30,7 +30,7 @@
                 };
             }],
             template: '\
-                <div class="chip-links" ng-transclude>\
+                <div class="chip-links user-select-disabled" ng-transclude>\
                 </div>\
             '
         };
