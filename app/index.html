@@ -14,12 +14,13 @@
         <link rel="stylesheet" href="dist/chip-links.min.css">
         <script src="dist/chip-links.js"></script>
     </head>
-    <body ng-app="ChipLinksClient" ng-cloak>
+    <body ng-app="ChipLinksClient" ng-controller="ChipLinksClientCtrl" ng-cloak>
         <chip-links>
-            <chip-link id="link1">All</chip-link>
-            <chip-link id="link2">Video</chip-link>
-            <chip-link id="link3">Live</chip-link>
-            <chip-link id="link4">Link</chip-link>
+            <chip-link id="link1" chip-link-selected="chipLinkSelectHandler(id)">All</chip-link>
+            <chip-link id="link2" chip-link-selected="chipLinkSelectHandler(id)">Video</chip-link>
+            <chip-link id="link3" chip-link-selected="chipLinkSelectHandler(id)">Live</chip-link>
+            <chip-link id="link4" chip-link-selected="chipLinkSelectHandler(id)">Link</chip-link>
+            <chip-link id="link5" chip-link-selected="chipLinkSelectHandler(id)">Multi-sync</chip-link>
         </chip-links>
     </body>
 </html>
