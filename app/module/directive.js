@@ -11,11 +11,11 @@
             transclude: true,
             scope: {},
             controller: ['$scope', function($scope) {
-                $log.info("Initializing chip-links...");
+                $log.debug("Initializing chip-links...");
                 $scope.chips = [];
 
                 this.addChip = function(chip) {
-                    $log.info("Adding chipLink " + chip.id + " to chipLinks...");
+                    $log.debug("Adding chipLink " + chip.id + " to chipLinks...");
                     if ($scope.chips.length === 0) {
                         chip.selected = true;
                     }
@@ -23,14 +23,14 @@
                 };
 
                 this.deselectAll = function() {
-                    $log.info("Deselecting all chip-links...");
+                    $log.debug("Deselecting all chip-links...");
                     angular.forEach($scope.chips, function(chip) {
                         chip.selected = false;
                     });
                 };
             }],
             template: '\
-                <div class="chip-links" ng-transclude>\
+                <div class="chip-links user-select-disabled" ng-transclude>\
                 </div>\
             '
         };
@@ -42,16 +42,21 @@
             transclude: true,
             restrict: 'E',
             scope: {
-                id: '@'
+                id: '@',
+                chipLinkSelected: '&'
             },
             link: function(scope, element, attrs, chipLinks) {
-                $log.info("Initializing chip-link...");
+                $log.debug("Initializing chip-link...");
                 chipLinks.addChip(scope);
 
                 scope.select = function() {
                     chipLinks.deselectAll();
-                    $log.info("Selecting chip-link " + scope.id + "...");
+
+                    $log.debug("Selecting chip-link " + scope.id + "...");
                     scope.selected = true;
+
+                    $log.debug("Invoking callback for chipLinkSelected...");
+                    scope.chipLinkSelected({ id : scope.id });
                 };
             },
             template: '\
