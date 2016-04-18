@@ -1,11 +1,11 @@
 // jshint multistr:true
 
 (function() {
-    'use strict';
+    "use strict";
 
     var chipLinks = angular.module('chip-links');
 
-    chipLinks.directive('chipLinks', function($log) {
+    chipLinks.directive('chipLinks', ['$log', function ($log) {
         return {
             restrict: 'E',
             transclude: true,
@@ -34,9 +34,9 @@
                 </div>\
             '
         };
-    });
+    }]);
 
-    chipLinks.directive('chipLink', function($log) {
+    chipLinks.directive('chipLink', ['$log', function ($log) {
         return {
             require: '^chipLinks',
             transclude: true,
@@ -65,5 +65,5 @@
                 </span>\
             '
         };
-    });
+    }]);
 })();
